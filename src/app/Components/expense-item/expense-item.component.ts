@@ -45,7 +45,7 @@ export class ExpenseItemComponent {
   }
 
   onSaved(updated: Expense): void {
-    this.expenseService.updateExpense(updated);
+    this.expenseService.editExpense(updated);
     this.isEditing.set(false);
   }
 
