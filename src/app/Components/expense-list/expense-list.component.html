@@ -1,13 +1,39 @@
-<section class="expense-list">
-  <h2 class="expense-list__title">All Expenses</h2>
+<div class="container py-4">
+
+  <!-- Page header -->
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+      <h2 class="fw-bold mb-0">All Expenses</h2>
+      <p class="text-muted small mb-0">
+        {{ transactionCount() }} transaction{{ transactionCount() !== 1 ? 's' : '' }}
+      </p>
+    </div>
+    <a routerLink="/add" class="btn btn-primary">+ Add Expense</a>
+  </div>
 
   @if (expenses().length === 0) {
-    <p class="expense-list__empty">No expenses yet. Add one!</p>
+    <!-- Empty state -->
+    <div class="card border-0 shadow-sm">
+      <div class="card-body text-center py-5">
+        <p class="text-muted mb-3">No expenses yet.</p>
+        <a routerLink="/add" class="btn btn-primary">Add your first expense</a>
+      </div>
+    </div>
   } @else {
-    <div class="expense-list__items">
-      @for (expense of expenses(); track expense.id) {
-        <app-expense-item [expense]="expense" />
-      }
+    <!-- Expense cards — each expense passed via @Input() binding -->
+    @for (expense of expenses(); track expense.id) {
+      <app-expense-item [expense]="expense" />
+    }
+
+    <!-- Summary footer -->
+    <div class="card border-0 shadow-sm mt-3 bg-light">
+      <div class="card-body d-flex justify-content-between align-items-center py-2">
+        <span class="text-muted small fw-semibold text-uppercase">
+          Total ({{ transactionCount() }} items)
+        </span>
+        <span class="fw-bold fs-5">{{ totalExpense() | currency }}</span>
+      </div>
     </div>
   }
-</section>
+
+</div>

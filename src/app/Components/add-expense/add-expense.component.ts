@@ -1,31 +1,27 @@
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Router, RouterLink } from '@angular/router';
 import { ExpenseService } from '../../Services/expense.service';
 import { ExpenseCategory } from '../../Models/expense.model';
 
 @Component({
   selector: 'app-add-expense',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, RouterLink],
   templateUrl: './add-expense.component.html',
   styleUrl: './add-expense.component.scss',
 })
 export class AddExpenseComponent {
   private expenseService = inject(ExpenseService);
+  private router = inject(Router);
 
+  // Two-way bound form fields
   title = '';
   amount = 0;
   category: ExpenseCategory = 'Food';
 
-  readonly categories: ExpenseCategory[] = [
-    'Work',
-    'Personal',
-    'Grocery',
-    'Utilities',
-    'Shopping',
-    'Travel',
-    'Food',
-  ];
+  // Categories from the service signal
+  readonly categories = this.expenseService.categories;
 
   onSubmit(): void {
     if (!this.title.trim() || this.amount <= 0) return;
@@ -34,8 +30,6 @@ export class AddExpenseComponent {
       amount: this.amount,
       category: this.category,
     });
-    this.title = '';
-    this.amount = 0;
-    this.category = 'Food';
+    this.router.navigate(['/expenses']);
   }
 }

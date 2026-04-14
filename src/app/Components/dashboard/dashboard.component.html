@@ -1,29 +1,59 @@
-<section class="dashboard">
-  <h2 class="dashboard__title">Overview</h2>
-  <div class="dashboard__stats">
-    <div class="stat-card">
-      <span class="stat-card__label">Total Expenses</span>
-      <span class="stat-card__value">{{ totalAmount() | currency }}</span>
+<div class="container py-4">
+
+  <!-- Page header -->
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+      <h2 class="fw-bold mb-0">Dashboard</h2>
+      <p class="text-muted mb-0 small">Your expense overview</p>
+    </div>
+    <a routerLink="/add" class="btn btn-primary">+ Add Expense</a>
+  </div>
+
+  <!-- Stat cards — computed signals bound directly -->
+  <div class="row g-4">
+    <div class="col-6 col-xl-3">
+      <div class="card border-0 shadow-sm h-100">
+        <div class="card-body p-4">
+          <p class="text-muted text-uppercase fw-semibold mb-3">Total Expenses</p>
+          <h3 class="fw-bold mb-0">{{ totalExpense() | currency }}</h3>
+        </div>
+      </div>
     </div>
 
-    <div class="stat-card">
-      <span class="stat-card__label">Number of Expenses</span>
-      <span class="stat-card__value">{{ count() }}</span>
+    <div class="col-6 col-xl-3">
+      <div class="card border-0 shadow-sm h-100">
+        <div class="card-body p-4">
+          <p class="text-muted text-uppercase fw-semibold mb-3">Transactions</p>
+          <h3 class="fw-bold mb-0">{{ transactionCount() }}</h3>
+        </div>
+      </div>
     </div>
 
-    <div class="stat-card stat-card--highlight">
-      <span class="stat-card__label">Highest Expense</span>
-      @if (highestExpense()) {
-        <span class="stat-card__value">{{ highestExpense()!.amount | currency }}</span>
-        <span class="stat-card__sub">{{ highestExpense()!.title }}</span>
-      } @else {
-        <span class="stat-card__value">—</span>
-      }
+    <!-- Conditional class binding: yellow tint for the highest-expense card -->
+    <div class="col-6 col-xl-3">
+      <div class="card border-0 shadow-sm h-100"
+           [class.bg-warning]="!!highestExpense()"
+           [class.bg-opacity-10]="!!highestExpense()">
+        <div class="card-body p-4">
+          <p class="text-muted text-uppercase fw-semibold mb-3">Highest Expense</p>
+          @if (highestExpense()) {
+            <h3 class="fw-bold mb-1">{{ highestExpense()!.amount | currency }}</h3>
+            <small class="text-muted">{{ highestExpense()!.title }}</small>
+          } @else {
+            <h3 class="fw-bold mb-0">—</h3>
+          }
+        </div>
+      </div>
     </div>
 
-    <div class="stat-card">
-      <span class="stat-card__label">Average Expense</span>
-      <span class="stat-card__value">{{ averageExpense() | currency }}</span>
+    <div class="col-6 col-xl-3">
+      <div class="card border-0 shadow-sm h-100">
+        <div class="card-body p-4">
+          <p class="text-muted text-uppercase fw-semibold mb-3">Average Expense</p>
+          <h3 class="fw-bold mb-0">{{ averageExpense() | currency }}</h3>
+        </div>
+      </div>
     </div>
   </div>
-</section>
+
+</div>

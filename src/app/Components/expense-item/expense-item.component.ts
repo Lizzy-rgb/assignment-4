@@ -1,37 +1,29 @@
-import { Component, Input, signal, inject } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { CurrencyPipe } from '@angular/common';
+import { Router } from '@angular/router';
 import { Expense, ExpenseCategory } from '../../Models/expense.model';
 import { ExpenseService } from '../../Services/expense.service';
-import { EditExpenseComponent } from '../edit-expense/edit-expense.component';
-
-const CATEGORY_COLORS: Record<ExpenseCategory, string> = {
-  Work: '#4a90e2',
-  Personal: '#9b59b6',
-  Grocery: '#27ae60',
-  Utilities: '#e67e22',
-  Shopping: '#e91e8c',
-  Travel: '#16a085',
-  Food: '#e74c3c',
-};
+import { CATEGORY_COLORS } from '../../utils/category-colors';
 
 @Component({
   selector: 'app-expense-item',
   standalone: true,
-  imports: [CurrencyPipe, EditExpenseComponent],
+  imports: [CurrencyPipe],
   templateUrl: './expense-item.component.html',
   styleUrl: './expense-item.component.scss',
 })
 export class ExpenseItemComponent {
+  // Input binding: parent (ExpenseList) passes each expense down
   @Input({ required: true }) expense!: Expense;
 
   private expenseService = inject(ExpenseService);
-
-  isEditing = signal(false);
+  private router = inject(Router);
 
   get categoryColor(): string {
     return CATEGORY_COLORS[this.expense.category];
   }
 
+  /** True when the expense amount exceeds $200 — drives class/style bindings */
   get isHighExpense(): boolean {
     return this.expense.amount > 200;
   }
@@ -41,15 +33,6 @@ export class ExpenseItemComponent {
   }
 
   onEdit(): void {
-    this.isEditing.set(true);
-  }
-
-  onSaved(updated: Expense): void {
-    this.expenseService.editExpense(updated);
-    this.isEditing.set(false);
-  }
-
-  onCancelled(): void {
-    this.isEditing.set(false);
+    this.router.navigate(['/edit', this.expense.id]);
   }
 }

@@ -1,68 +1,9 @@
-.dashboard {
-  background: #fff;
-  border-radius: 12px;
-  padding: 1.5rem;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
-  margin-bottom: 1.5rem;
-
-  &__title {
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: #374151;
-    margin: 0 0 1rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
-
-  &__stats {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1rem;
-
-    @media (max-width: 768px) {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-}
-
-.stat-card {
-  background: #f9fafb;
-  border-radius: 10px;
-  padding: 1.25rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-  border: 1px solid #e5e7eb;
-  transition: transform 0.15s;
+/* Bootstrap handles layout; keep component styles minimal */
+.card {
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
 
   &:hover {
     transform: translateY(-2px);
-  }
-
-  &--highlight {
-    background: linear-gradient(135deg, #fef3c7, #fde68a);
-    border-color: #f59e0b;
-  }
-
-  &__label {
-    font-size: 0.75rem;
-    color: #6b7280;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-  }
-
-  &__value {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: #111827;
-  }
-
-  &__sub {
-    font-size: 0.8rem;
-    color: #6b7280;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1) !important;
   }
 }
