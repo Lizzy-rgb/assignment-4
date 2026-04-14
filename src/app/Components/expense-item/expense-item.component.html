@@ -1,0 +1,41 @@
+<div
+  class="expense-item"
+  [class.expense-item--high]="isHighExpense"
+  [style.--category-color]="categoryColor"
+>
+  <!-- Style binding: colored top bar per category via CSS variable -->
+  <div class="expense-item__category-bar"></div>
+
+  <div class="expense-item__body">
+    <div class="expense-item__info">
+      <span class="expense-item__title">{{ expense.title }}</span>
+      <!-- Style binding: category label color -->
+      <span class="expense-item__category" [style.color]="categoryColor">
+        {{ expense.category }}
+      </span>
+    </div>
+
+    <div class="expense-item__right">
+      <!-- Class binding: highlight high-value amounts -->
+      <span
+        class="expense-item__amount"
+        [class.expense-item__amount--high]="isHighExpense"
+      >
+        {{ expense.amount | currency }}
+      </span>
+
+      <div class="expense-item__actions">
+        <button class="btn btn--edit" (click)="onEdit()">Edit</button>
+        <button class="btn btn--delete" (click)="onDelete()">Delete</button>
+      </div>
+    </div>
+  </div>
+
+  @if (isEditing()) {
+    <app-edit-expense
+      [expense]="expense"
+      (saved)="onSaved($event)"
+      (cancelled)="onCancelled()"
+    />
+  }
+</div>

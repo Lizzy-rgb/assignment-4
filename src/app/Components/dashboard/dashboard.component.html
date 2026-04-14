@@ -1,0 +1,29 @@
+<section class="dashboard">
+  <h2 class="dashboard__title">Overview</h2>
+  <div class="dashboard__stats">
+    <div class="stat-card">
+      <span class="stat-card__label">Total Expenses</span>
+      <span class="stat-card__value">{{ totalAmount() | currency }}</span>
+    </div>
+
+    <div class="stat-card">
+      <span class="stat-card__label">Number of Expenses</span>
+      <span class="stat-card__value">{{ count() }}</span>
+    </div>
+
+    <div class="stat-card stat-card--highlight">
+      <span class="stat-card__label">Highest Expense</span>
+      @if (highestExpense()) {
+        <span class="stat-card__value">{{ highestExpense()!.amount | currency }}</span>
+        <span class="stat-card__sub">{{ highestExpense()!.title }}</span>
+      } @else {
+        <span class="stat-card__value">—</span>
+      }
+    </div>
+
+    <div class="stat-card">
+      <span class="stat-card__label">Average Expense</span>
+      <span class="stat-card__value">{{ averageExpense() | currency }}</span>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,108 @@
+.expense-item {
+  border: 1.5px solid #e5e7eb;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: box-shadow 0.2s, transform 0.15s;
+  background: #fff;
+
+  &:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    transform: translateY(-1px);
+  }
+
+  // Class binding: applied when expense.amount > 200
+  &--high {
+    border-color: #fbbf24;
+    background: #fffbeb;
+  }
+
+  // Style binding: --category-color is set per-item via [style.--category-color]
+  &__category-bar {
+    height: 4px;
+    background: var(--category-color, #94a3b8);
+  }
+
+  &__body {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.85rem 1rem;
+    gap: 1rem;
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    min-width: 0;
+    flex: 1;
+  }
+
+  &__title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #111827;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__category {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    // color is set via [style.color] binding
+  }
+
+  &__right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-shrink: 0;
+  }
+
+  &__amount {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #111827;
+
+    // Class binding: applied when isHighExpense is true
+    &--high {
+      color: #d97706;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    gap: 0.4rem;
+  }
+}
+
+.btn {
+  padding: 0.4rem 0.8rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+
+  &--edit {
+    background: #e0f2fe;
+    color: #0369a1;
+
+    &:hover {
+      background: #bae6fd;
+    }
+  }
+
+  &--delete {
+    background: #fee2e2;
+    color: #dc2626;
+
+    &:hover {
+      background: #fecaca;
+    }
+  }
+}

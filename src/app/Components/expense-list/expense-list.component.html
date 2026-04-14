@@ -1,0 +1,13 @@
+<section class="expense-list">
+  <h2 class="expense-list__title">All Expenses</h2>
+
+  @if (expenses().length === 0) {
+    <p class="expense-list__empty">No expenses yet. Add one!</p>
+  } @else {
+    <div class="expense-list__items">
+      @for (expense of expenses(); track expense.id) {
+        <app-expense-item [expense]="expense" />
+      }
+    </div>
+  }
+</section>
