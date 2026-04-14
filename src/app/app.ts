@@ -1,12 +1,10 @@
 import { Component } from '@angular/core';
-import { DashboardComponent } from './Components/dashboard/dashboard.component';
-import { AddExpenseComponent } from './Components/add-expense/add-expense.component';
-import { ExpenseListComponent } from './Components/expense-list/expense-list.component';
+import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [DashboardComponent, AddExpenseComponent, ExpenseListComponent],
+  imports: [RouterOutlet, RouterLink, RouterLinkActive],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })

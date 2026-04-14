@@ -1,19 +1,36 @@
-<div class="app-layout">
-  <header class="app-header">
-    <h1 class="app-header__title">Expense Tracker</h1>
-  </header>
+<!-- Bootstrap navbar — navbar-expand (no breakpoint) keeps it always expanded without JS -->
+<nav class="navbar navbar-expand navbar-dark bg-primary shadow-sm">
+  <div class="container">
+    <a class="navbar-brand fw-bold" routerLink="/">
+      Expense Tracker
+    </a>
+    <ul class="navbar-nav ms-auto gap-1">
+      <li class="nav-item">
+        <a
+          class="nav-link px-3"
+          routerLink="/"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >Dashboard</a>
+      </li>
+      <li class="nav-item">
+        <a
+          class="nav-link px-3"
+          routerLink="/expenses"
+          routerLinkActive="active"
+        >Expenses</a>
+      </li>
+      <li class="nav-item">
+        <a
+          class="nav-link px-3"
+          routerLink="/add"
+          routerLinkActive="active"
+        >Add Expense</a>
+      </li>
+    </ul>
+  </div>
+</nav>
 
-  <main class="app-main">
-    <app-dashboard />
-
-    <div class="app-content">
-      <aside class="app-sidebar">
-        <app-add-expense />
-      </aside>
-
-      <section class="app-list">
-        <app-expense-list />
-      </section>
-    </div>
-  </main>
-</div>
+<main>
+  <router-outlet />
+</main>
