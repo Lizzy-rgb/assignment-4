@@ -6,12 +6,12 @@ export class ExpenseService {
   // ── State ────────────────────────────────────────────────────────────────
 
   private _expenses = signal<Expense[]>([
-    { id: '1', title: 'Office Supplies', amount: 45.99, category: 'Work' },
+    { id: '1', title: 'Mini Whiteboard', amount: 19.99, category: 'Work' },
     { id: '2', title: 'Weekly Groceries', amount: 132.5, category: 'Grocery' },
-    { id: '3', title: 'Flight to NYC', amount: 580.0, category: 'Travel' },
-    { id: '4', title: 'Netflix Subscription', amount: 15.99, category: 'Utilities' },
-    { id: '5', title: 'Dinner Out', amount: 67.25, category: 'Food' },
-    { id: '6', title: 'New Shoes', amount: 89.99, category: 'Shopping' },
+    { id: '3', title: 'Bed Frame', amount: 580.0, category: 'Travel' },
+    { id: '4', title: 'Spotify Subscription', amount: 15.99, category: 'Utilities' },
+    { id: '5', title: 'Dinner Out', amount: 57.25, category: 'Food' },
+    { id: '6', title: 'New Skirt', amount: 29.99, category: 'Shopping' },
   ]);
 
   readonly expenses = this._expenses.asReadonly();
